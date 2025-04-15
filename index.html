@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>FoosCoach</h1>
+
+
+<h2>Positionen</h2>
+<form id="inputForm">
+    <input type="checkbox" id="pos0" name="left", checked>
+    <label for="pos0"> Links</label><br>
+    <input type="checkbox" id="pos1" name="halfleft", checked>
+    <label for="pos1"> Halblinks</label><br>
+    <input type="checkbox" id="pos2" name="middle", checked>
+    <label for="pos2"> Mitte</label><br>
+    <input type="checkbox" id="pos3" name="halfright", checked>
+    <label for="pos3"> Halbrechts</label><br>
+    <input type="checkbox" id="pos4" name="right", checked>
+    <label for="pos4"> Rechts</label><br>
+
+<h2>Zeiteinstellungen</h2>
+
+    <label for="prepareTime">Auflage:</label><br>
+    <input type="range" id="prepareTime" name="prepareTime" min="0" max="10" value="5"><br>
+    <span id="prepareTimeValue">50</span> s
+    <br><br>
+
+    <label for="readyTime">Bereitmachen:</label><br>
+    <input type="range" id="readyTime" name="readyTime" min="0" max="10" value="2"><br>
+    <span id="readyTimeValue">50</span> s
+    <br><br>
+
+    <label for="minWaitTime">Wartezeit (min):</label><br>
+    <input type="range" id="minWaitTime" name="minWaitTime" min="0" max="15" value="3"><br>
+    <span id="minWaitTimeValue">50</span> s
+    <br><br>
+
+    <label for="maxWaitTime">Wartezeit (max):</label><br>
+    <input type="range" id="maxWaitTime" name="maxWaitTime" min="0" max="15" value="15"><br>
+    <span id="maxWaitTimeValue">50</span> s
+    <br><br>
+
+    <label for="highlightTime">Anzeige Zielposition:</label><br>
+    <input type="range" id="highlightTime" name="highlightTime" min="0" max="5" value="1"><br>
+    <span id="highlightTimeValue">50</span> s
+    <br><br>
+
+    <label for="refreshTime">Wartezeit vor nächstem Durchgang:</label><br>
+    <input type="range" id="refreshTime" name="refreshTime" min="0" max="5" value="3"><br>
+    <span id="refreshTimeValue">50</span> s
+    <br><br>
+
+<h2>Sounds</h2>
+
+    <input type="checkbox" id="doClick" name="doClick">
+    <label for="doClick"> Ticken (Sekunden)</label><br>
+    <input type="checkbox" id="doBeep" name="doBeep", checked>
+    <label for="doBeep"> Beep (bei Schuss)</label><br>
+    <input type="checkbox" id="doAnnounce" name="doAnnounce">
+    <label for="doAnnounce"> Ansage der Position (bei Schuss)</label><br>
+
+    <br><br>
+    <button type="submit">Bereit!</button>
+  </form> 
+
+
+
+<script>
+
+    /*
+        SLIDERS
+    */
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const rangeSliderPrepare = document.getElementById('prepareTime');
+        const sliderValuePrepare = document.getElementById('prepareTimeValue');
+        sliderValuePrepare.textContent = rangeSliderPrepare.value;
+        rangeSliderPrepare.addEventListener('input', function() {
+            sliderValuePrepare.textContent = rangeSliderPrepare.value;
+        });
+
+        const rangeSliderReady = document.getElementById('readyTime');
+        const sliderValueReady = document.getElementById('readyTimeValue');
+        sliderValueReady.textContent = rangeSliderReady.value;
+        rangeSliderReady.addEventListener('input', function() {
+            sliderValueReady.textContent = rangeSliderReady.value;
+        });
+
+        const rangeSliderMinWait = document.getElementById('minWaitTime');
+        const sliderValueMinWait = document.getElementById('minWaitTimeValue');
+        sliderValueMinWait.textContent = rangeSliderMinWait.value;
+        rangeSliderMinWait.addEventListener('input', function() {
+            sliderValueMinWait.textContent = rangeSliderMinWait.value;
+        });
+
+        const rangeSliderMaxWait = document.getElementById('maxWaitTime');
+        const sliderValueMaxWait = document.getElementById('maxWaitTimeValue');
+        sliderValueMaxWait.textContent = rangeSliderMaxWait.value;
+        rangeSliderMaxWait.addEventListener('input', function() {
+            sliderValueMaxWait.textContent = rangeSliderMaxWait.value;
+        });
+
+        const rangeSliderHighlight = document.getElementById('highlightTime');
+        const sliderValueHighlight = document.getElementById('highlightTimeValue');
+        sliderValueHighlight.textContent = rangeSliderHighlight.value;
+        rangeSliderHighlight.addEventListener('input', function() {
+            sliderValueHighlight.textContent = rangeSliderHighlight.value;
+        });
+
+        const rangeSliderRefresh = document.getElementById('refreshTime');
+        const sliderValueRefresh = document.getElementById('refreshTimeValue');
+        sliderValueRefresh.textContent = rangeSliderRefresh.value;
+        rangeSliderRefresh.addEventListener('input', function() {
+            sliderValueRefresh.textContent = rangeSliderRefresh.value;
+        });
+
+    });
+
+    document.getElementById('inputForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+    
+        // Get the values from the form inputs
+        const pos0Value = document.getElementById('pos0').checked;
+        const pos1Value = document.getElementById('pos1').checked;
+        const pos2Value = document.getElementById('pos2').checked;
+        const pos3Value = document.getElementById('pos3').checked;
+        const pos4Value = document.getElementById('pos4').checked;
+        const prepareTimeValue = document.getElementById('prepareTime').value;
+        const readyTimeValue = document.getElementById('readyTime').value;
+        const minWaitTimeValue = document.getElementById('minWaitTime').value;
+        const maxWaitTimeValue = document.getElementById('maxWaitTime').value;
+        const highlightTimeValue = document.getElementById('highlightTime').value;
+        const refreshTimeValue = document.getElementById('refreshTime').value;
+        const doClickValue = document.getElementById('doClick').checked;
+        const doBeepValue = document.getElementById('doBeep').checked;
+        const doAnnounceValue = document.getElementById('doAnnounce').checked;
+
+        console.log(
+            pos0Value,pos1Value,pos2Value,pos3Value,pos4Value,prepareTimeValue,readyTimeValue,minWaitTimeValue,maxWaitTimeValue,highlightTimeValue,refreshTimeValue,doClickValue,doBeepValue,doAnnounceValue
+        )
+    
+        //Construct the new URL with the parameters
+        const baseUrl = './app.html';
+        const newUrl = `${baseUrl}?pos0=${encodeURIComponent(pos0Value)}&pos1=${encodeURIComponent(pos1Value)}&pos2=${encodeURIComponent(pos2Value)}&pos3=${encodeURIComponent(pos3Value)}&pos4=${encodeURIComponent(pos4Value)}&prepareTime=${encodeURIComponent(prepareTimeValue)}&readyTime=${encodeURIComponent(readyTimeValue)}&minWaitTime=${encodeURIComponent(minWaitTimeValue)}&maxWaitTime=${encodeURIComponent(maxWaitTimeValue)}&highlightTime=${encodeURIComponent(highlightTimeValue)}&refreshTime=${encodeURIComponent(refreshTimeValue)}&doClick=${encodeURIComponent(doClickValue)}&doBeep=${encodeURIComponent(doBeepValue)}&doAnnounce=${encodeURIComponent(doAnnounceValue)}`;
+
+        // Log the new URL to the console
+        console.log(newUrl);
+    
+        // redirect the user to the new URL
+        window.location.href = newUrl;
+    });
+</script>
+
+</body>
+</html> 
